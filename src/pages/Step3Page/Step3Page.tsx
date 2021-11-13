@@ -1,5 +1,6 @@
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
 //actions
 import { setStep } from '../../store/ValuesSlice/ValuesSlice';
 //thunks
@@ -8,6 +9,7 @@ import { asyncUpdateValuesThunk } from '../../store/ValuesSlice/ValuesThunk';
 export const Step3Page = () => {
   const values = useSelector((state: RootStateOrAny) => state.values);
   const dispatch = useDispatch();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const formik = useFormik({
     initialValues: {

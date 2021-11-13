@@ -1,5 +1,6 @@
-import { asyncGetValuesThunk } from './ValuesThunk';
+import { asyncGetValuesThunk, asyncUpdateValuesThunk } from './ValuesThunk';
 import { createSlice } from '@reduxjs/toolkit';
+import { act } from 'react-dom/test-utils';
 
 interface IValuesSlice {
   isLoading: boolean;
@@ -64,6 +65,16 @@ const ValuesSlice = createSlice({
       state.inputD = action.payload?.inputD;
     });
     builder.addCase(asyncGetValuesThunk.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(asyncUpdateValuesThunk.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(asyncUpdateValuesThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.step = 1;
+    });
+    builder.addCase(asyncUpdateValuesThunk.rejected, (state, action) => {
       state.isLoading = false;
     });
   },
