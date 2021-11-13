@@ -1,18 +1,26 @@
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { icons } from '../../utils/icons';
 
 export const Header = () => {
+  const history = useHistory();
   return (
     <>
       <header className='header'>
         <div className='container d-flex h100'>
-          <div className='header__logo'>
+          <div className='header__logo' onClick={() => history.push('/')}>
             <img src={icons.logo} alt='' />
           </div>
           <nav className='header__nav'>
             <ul className='header__nav__wrapper'>
-              <li className='header__nav__item'>1</li>
-              <li className='header__nav__item'>2</li>
-              <li className='header__nav__item'>3</li>
+              <NavLink to='/' activeClassName='active-link'>
+                <li className='header__nav__item'>Main</li>
+              </NavLink>
+              <NavLink to='/task' activeClassName='active-link'>
+                <li className='header__nav__item'>Task</li>
+              </NavLink>
+              <NavLink to='/contacts' activeClassName='active-link'>
+                <li className='header__nav__item'>Contact</li>
+              </NavLink>
             </ul>
           </nav>
         </div>

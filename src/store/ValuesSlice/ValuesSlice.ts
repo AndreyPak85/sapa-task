@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface IValuesSlice {
   isLoading: boolean;
-  isValidate: boolean;
+  isValide: boolean;
   inputA: number | undefined;
   inputB: number | undefined;
   inputC: number | undefined;
@@ -14,7 +14,7 @@ interface IValuesSlice {
 
 const ValuesSliceState: IValuesSlice = {
   isLoading: false,
-  isValidate: false,
+  isValide: false,
   inputA: 0,
   inputB: 0,
   inputC: 0,
@@ -43,8 +43,8 @@ const ValuesSlice = createSlice({
       state.sumABC =
         action.payload.inputA + action.payload.inputB + action.payload.inputC;
     },
-    setIsValidate(state, action) {
-      state.isValidate = action.payload;
+    setIsValide(state, action) {
+      state.isValide = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -57,11 +57,6 @@ const ValuesSlice = createSlice({
       state.inputB = action.payload?.inputB;
       state.inputC = action.payload?.inputC;
       state.inputD = action.payload?.inputD;
-      //   state.sumAB = action.payload!.inputA + action.payload!.inputB;
-      //   state.sumABC =
-      //     action.payload!.inputA +
-      //     action.payload!.inputB +
-      //     action.payload!.inputC;
     });
     builder.addCase(asyncGetValuesThunk.rejected, (state, action) => {
       state.isLoading = false;
@@ -76,5 +71,5 @@ export const {
   setInputA,
   setInputB,
   setInputC,
-  setIsValidate,
+  setIsValide,
 } = ValuesSlice.actions;

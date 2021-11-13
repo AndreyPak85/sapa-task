@@ -11,6 +11,7 @@ import {
   setInputA,
   setInputB,
   setInputC,
+  setIsValide,
 } from '../../store/ValuesSlice/ValuesSlice';
 
 export const Step1Page = () => {
@@ -34,7 +35,7 @@ export const Step1Page = () => {
         .required('Required field'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(setIsValide(true));
       history.push('/step-2');
     },
   });
@@ -50,18 +51,7 @@ export const Step1Page = () => {
         inputC: formik.values.inputC,
       })
     );
-    // setSumC((formik.values.inputA + formik.values.inputB).toString());
-    // formik.values.inputA = values.inputA;
-    // formik.values.inputB = values.inputB;
-    // formik.values.inputC = values.inputC;
-    console.log(values);
   }, [formik.values.inputA, formik.values.inputB, formik.values.inputC]);
-
-  // useEffect(() => {
-  //   formik.values.inputA = values.inputA;
-  //   formik.values.inputB = values.inputB;
-  //   formik.values.inputC = values.inputC;
-  // }, [values.isLoading]);
 
   useEffect(() => {
     dispatch(asyncGetValuesThunk());

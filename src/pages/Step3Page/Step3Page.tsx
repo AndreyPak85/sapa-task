@@ -44,7 +44,9 @@ export const Step3Page = () => {
             <button type='button' onClick={() => history.goBack()}>
               Back
             </button>
-            <button type='submit'>Send</button>
+            <button type='submit' disabled={!values.isValide}>
+              Send
+            </button>
           </form>
         </div>
       </div>
