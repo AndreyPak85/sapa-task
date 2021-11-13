@@ -10,6 +10,7 @@ interface IValuesSlice {
   inputD: number | undefined;
   sumAB: number | undefined;
   sumABC: number | undefined;
+  step: number;
 }
 
 const ValuesSliceState: IValuesSlice = {
@@ -21,6 +22,7 @@ const ValuesSliceState: IValuesSlice = {
   inputD: 0,
   sumAB: 0,
   sumABC: 0,
+  step: 1,
 };
 
 const ValuesSlice = createSlice({
@@ -45,6 +47,9 @@ const ValuesSlice = createSlice({
     },
     setIsValide(state, action) {
       state.isValide = action.payload;
+    },
+    setStep(state, action) {
+      state.step = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -72,4 +77,5 @@ export const {
   setInputB,
   setInputC,
   setIsValide,
+  setStep,
 } = ValuesSlice.actions;

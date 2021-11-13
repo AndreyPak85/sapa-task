@@ -1,11 +1,11 @@
 import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router';
+//actions
+import { setStep } from '../../store/ValuesSlice/ValuesSlice';
 //thunks
 import { asyncUpdateValuesThunk } from '../../store/ValuesSlice/ValuesThunk';
 
 export const Step3Page = () => {
-  const history = useHistory();
   const values = useSelector((state: RootStateOrAny) => state.values);
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ export const Step3Page = () => {
               <span>Input D</span>
               <input type='text' disabled={true} value={formik.values.inputD} />
             </div>
-            <button type='button' onClick={() => history.goBack()}>
+            <button type='button' onClick={() => dispatch(setStep(2))}>
               Back
             </button>
             <button type='submit' disabled={!values.isValide}>

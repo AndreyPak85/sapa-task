@@ -17,14 +17,18 @@ export const ContactsPage = () => {
               Github
             </a>
           </strong>
-        </div>        </div>
+        </div>
         <div className='contacts-page__item'>
           <strong>
-            <a
-              href=''
-              target='_blank'
-            >
+            <a href='https://hub.docker.com/r/013274418/sapa' target='_blank'>
               Docker hub
+            </a>
+          </strong>
+        </div>{' '}
+        <div className='contacts-page__item'>
+          <strong>
+            <a href='https://t.me/andrey_park' target='_blank'>
+              Telegram
             </a>
           </strong>
         </div>

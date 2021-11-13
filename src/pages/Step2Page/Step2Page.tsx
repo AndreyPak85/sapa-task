@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import { setStep } from '../../store/ValuesSlice/ValuesSlice';
 
 export const Step2Page = () => {
-  const history = useHistory();
   const values = useSelector((state: RootStateOrAny) => state.values);
-
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       inputD: values.sumABC,
     },
     onSubmit: (values) => {
-      history.push('/step-3');
+      dispatch(setStep(3));
     },
   });
 
@@ -31,7 +31,7 @@ export const Step2Page = () => {
               <span>Input D</span>
               <input type='number' disabled={true} value={values.sumABC} />
             </div>
-            <button type='button' onClick={() => history.goBack()}>
+            <button type='button' onClick={() => dispatch(setStep(1))}>
               Back
             </button>
             <button type='submit'>Next</button>

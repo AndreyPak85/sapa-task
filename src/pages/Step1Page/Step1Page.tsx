@@ -12,12 +12,11 @@ import {
   setInputB,
   setInputC,
   setIsValide,
+  setStep,
 } from '../../store/ValuesSlice/ValuesSlice';
 
 export const Step1Page = () => {
-  const [sumC, setSumC] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
   const values = useSelector((state: RootStateOrAny) => state.values);
 
   const formik = useFormik({
@@ -36,7 +35,7 @@ export const Step1Page = () => {
     }),
     onSubmit: (values) => {
       dispatch(setIsValide(true));
-      history.push('/step-2');
+      dispatch(setStep(2));
     },
   });
 
