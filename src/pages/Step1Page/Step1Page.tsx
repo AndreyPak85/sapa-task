@@ -5,6 +5,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 //thunks
 import { asyncGetValuesThunk } from '../../store/ValuesSlice/ValuesThunk';
+import {
+  getSumAB,
+  getSumABC,
+  setInputA,
+  setInputB,
+  setInputC,
+} from '../../store/ValuesSlice/ValuesSlice';
 
 export const Step1Page = () => {
   const [sumC, setSumC] = useState('');
@@ -14,29 +21,50 @@ export const Step1Page = () => {
 
   const formik = useFormik({
     initialValues: {
-      inputA: 0,
-      inputB: 0,
-      inputC: '',
+      inputA: values.inputA,
+      inputB: values.inputB,
+      inputC: values.inputC,
     },
+    enableReinitialize: true,
     validationSchema: Yup.object({
       inputA: Yup.number().required('Required field'),
       inputB: Yup.number().required('Required field'),
-      inputC: Yup.string().oneOf([sumC], 'Must be sum InputA and InputB'),
+      inputC: Yup.number()
+        .oneOf([values.sumAB], 'Must be sum InputA and InputB')
+        .required('Required field'),
     }),
     onSubmit: (values) => {
+      console.log(values);
       history.push('/step-2');
     },
   });
 
   useEffect(() => {
-    setSumC((formik.values.inputA + formik.values.inputB).toString());
-  }, [formik.values.inputA, formik.values.inputB]);
+    dispatch(
+      getSumAB({ inputA: formik.values.inputA, inputB: formik.values.inputB })
+    );
+    dispatch(
+      getSumABC({
+        inputA: formik.values.inputA,
+        inputB: formik.values.inputB,
+        inputC: formik.values.inputC,
+      })
+    );
+    // setSumC((formik.values.inputA + formik.values.inputB).toString());
+    // formik.values.inputA = values.inputA;
+    // formik.values.inputB = values.inputB;
+    // formik.values.inputC = values.inputC;
+    console.log(values);
+  }, [formik.values.inputA, formik.values.inputB, formik.values.inputC]);
+
+  // useEffect(() => {
+  //   formik.values.inputA = values.inputA;
+  //   formik.values.inputB = values.inputB;
+  //   formik.values.inputC = values.inputC;
+  // }, [values.isLoading]);
 
   useEffect(() => {
     dispatch(asyncGetValuesThunk());
-    formik.values.inputA = values.inputA;
-    formik.values.inputB = values.inputB;
-    formik.values.inputC = values.inputC;
   }, []);
 
   return (
@@ -51,7 +79,10 @@ export const Step1Page = () => {
                 name='inputA'
                 value={formik.values.inputA}
                 type='number'
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  dispatch(setInputA(+e.target.value));
+                  formik.values.inputA = +e.target.value;
+                }}
               />
               {formik.touched.inputA && formik.errors.inputA ? (
                 <div className='input-error'>{formik.errors.inputA}</div>
@@ -63,7 +94,10 @@ export const Step1Page = () => {
                 type='number'
                 name='inputB'
                 value={formik.values.inputB}
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  dispatch(setInputB(+e.target.value));
+                  formik.values.inputB = +e.target.value;
+                }}
               />
               {formik.touched.inputB && formik.errors.inputB ? (
                 <div className='input-error'>{formik.errors.inputB}</div>
@@ -76,7 +110,10 @@ export const Step1Page = () => {
                 name='inputC'
                 value={formik.values.inputC}
                 type='number'
-                onChange={formik.handleChange}
+                onChange={(e) => {
+                  dispatch(setInputC(+e.target.value));
+                  formik.values.inputC = +e.target.value;
+                }}
               />
               {formik.errors.inputC && formik.touched.inputC ? (
                 <div className='input-error'>{formik.errors.inputC}</div>

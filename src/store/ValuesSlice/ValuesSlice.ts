@@ -7,8 +7,8 @@ interface IValuesSlice {
   inputB: number | undefined;
   inputC: number | undefined;
   inputD: number | undefined;
-  sumAB: number;
-  sumABC: number;
+  sumAB: number | undefined;
+  sumABC: number | undefined;
 }
 
 const ValuesSliceState: IValuesSlice = {
@@ -25,8 +25,22 @@ const ValuesSlice = createSlice({
   name: 'values',
   initialState: ValuesSliceState,
   reducers: {
-    getSumAB(state, action) {},
-    getSumABC(state, action) {},
+    setInputA(state, action) {
+      state.inputA = action.payload;
+    },
+    setInputB(state, action) {
+      state.inputB = action.payload;
+    },
+    setInputC(state, action) {
+      state.inputC = action.payload;
+    },
+    getSumAB(state, action) {
+      state.sumAB = action.payload.inputA + action.payload.inputB;
+    },
+    getSumABC(state, action) {
+      state.sumABC =
+        action.payload.inputA + action.payload.inputB + action.payload.inputC;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncGetValuesThunk.pending, (state, action) => {
@@ -38,6 +52,11 @@ const ValuesSlice = createSlice({
       state.inputB = action.payload?.inputB;
       state.inputC = action.payload?.inputC;
       state.inputD = action.payload?.inputD;
+      //   state.sumAB = action.payload!.inputA + action.payload!.inputB;
+      //   state.sumABC =
+      //     action.payload!.inputA +
+      //     action.payload!.inputB +
+      //     action.payload!.inputC;
     });
     builder.addCase(asyncGetValuesThunk.rejected, (state, action) => {
       state.isLoading = false;
@@ -46,4 +65,5 @@ const ValuesSlice = createSlice({
 });
 
 export default ValuesSlice.reducer;
-export const { getSumAB, getSumABC } = ValuesSlice.actions;
+export const { getSumAB, getSumABC, setInputA, setInputB, setInputC } =
+  ValuesSlice.actions;
