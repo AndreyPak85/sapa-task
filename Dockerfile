@@ -4,14 +4,12 @@ WORKDIR /app
 
 COPY package*.json .
 
-RUN yarn add package.json
+RUN npm i
 
 COPY . .
 
 RUN npm install -g serve
 
-RUN yarn build
-
-EXPOSE 8080
+RUN npm run build
 
 CMD serve -s build -l 3000

@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+##Task for Sapa software
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Написать мини-приложение на React (можно javascript, но typescript будет лучше), реализующий степпер (пример - Steps) из трёх страниц.
+Степ 1:
+Три инпута - inputA, inputB, inputC
+Кнопка “Далее”
+Степ 2:
+Один инпут - inputD
+Кнопки “Назад”, “Далее”
+Степ 3:
+Кнопка “Назад”, “Отправить” (submit формы).
 
-## Available Scripts
+Значение inputC должно быть равно сумме значений inputA и inputB
+Значение inputD должно быть равно сумме значений inputA, inputB и inputC
+inputD должен быть disabled
+inputA, inputB и inputC должны быть required
+Первоначальные значения нужно получить запросом GET https://60361aba6496b900174a0050.mockapi.io/api/values/1
+После получения значений их нужно проверить/валидировать: отобразить ошибки если не заполнены обязательные поля, суммы (пункты 1 и 2) неправильные.
+Отправка (submit) формы должна обновлять значения. Запрос PUT https://60361aba6496b900174a0050.mockapi.io/api/values/1
+Отправка возможна, только если все проверки прошли успешно (пункт 6), иначе кнопка disabled
+Степпер должен быть в отдельном компоненте, переключение шагов должно быть реализовано с помощью Redux или ContextAPI.
 
-In the project directory, you can run:
+Нужно использовать: Redux или ContextAPI, axios или fetch
+Можно использовать: Create React App, любые UI библиотеки (antd, bootstrap, material и т.д), любые библиотеки управления формами (Formik, React Hook Form и т.д), любые библиотеки для валидации (Yup или подобные)
 
-### `yarn start`
+К верстке требований нет.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##Для проверки задания
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+1. git clone https://github.com/AndreyPak85/sapa-task.git
+2. cd sapa-task
+3. npm i
+4. npm run start
+```
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+###Задание выполнил Андрей П.
