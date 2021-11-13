@@ -4,7 +4,7 @@ export const Header = () => {
   return (
     <>
       <header className='header'>
-        <div className='container d-flex'>
+        <div className='container d-flex h100'>
           <div className='header__logo'>
             <img src={icons.logo} alt='' />
           </div>
