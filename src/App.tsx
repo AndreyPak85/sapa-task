@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
+
+import { Layout } from './containers/layout';
+import { store } from './store';
+import { Notifier } from './components/Notifier';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Router>
+        <SnackbarProvider
+          maxSnack={3}
+          autoHideDuration={4000}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Provider store={store}>
+            <Notifier />
+            <Layout />
+          </Provider>
+        </SnackbarProvider>
+      </Router>
+    </>
   );
 }
 
