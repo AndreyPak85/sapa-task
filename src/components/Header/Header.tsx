@@ -12,13 +12,13 @@ export const Header = () => {
           </div>
           <nav className='header__nav'>
             <ul className='header__nav__wrapper'>
-              <NavLink to='/' activeClassName='active-link'>
+              <NavLink to='/' exact activeClassName='active-link'>
                 <li className='header__nav__item'>Main</li>
               </NavLink>
-              <NavLink to='/task' activeClassName='active-link'>
+              <NavLink to='/task' exact activeClassName='active-link'>
                 <li className='header__nav__item'>Task</li>
               </NavLink>
-              <NavLink to='/contacts' activeClassName='active-link'>
+              <NavLink to='/contacts' exact activeClassName='active-link'>
                 <li className='header__nav__item'>Contact</li>
               </NavLink>
             </ul>
