@@ -8,4 +8,11 @@ export const valuesApi = {
       throw error;
     }
   },
+  update: (body: any) => {
+    try {
+      return instance.put('/values/1', { ...body });
+    } catch (error) {
+      throw error;
+    }
+  },
 };

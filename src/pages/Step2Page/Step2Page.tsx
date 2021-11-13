@@ -25,7 +25,7 @@ export const Step2Page = () => {
               <span>
                 Sum(inputA, inputB, inputC) from step #1 - {values.sumABC}
               </span>
-              <div className=''></div>
+              <br />
               <span>Initial value from API - {values.inputD}</span>
               <hr />
               <span>Input D</span>
