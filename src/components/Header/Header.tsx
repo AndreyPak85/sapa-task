@@ -19,7 +19,7 @@ export const Header = () => {
                 <li className='header__nav__item'>Task</li>
               </NavLink>
               <NavLink to='/contacts' exact activeClassName='active-link'>
-                <li className='header__nav__item'>Contact</li>
+                <li className='header__nav__item'>Contacts</li>
               </NavLink>
             </ul>
           </nav>
